@@ -14,23 +14,27 @@ if (mysqli_connect_errno()) {
 }
 $sql = "SELECT * FROM USERS";
 
-
+//Getting Data
+//$query = $mysqli->query($sql);
+// while ($data = $query->fetch_assoc()) {
+// 	echo "ID: ".$data['id']."<br>";
+// 	echo "Name: ".$data['name']."<br>";
+// 	echo "E-mail: ".$data['email']."<hr>";
+// }
 
 if ($query = $mysqli->query($sql)) {
-
-	//Getting Data
-	while ($user = $query->fetch_array()) {
-		echo "ID: ".$user['id']."<br>";
-		echo "Name: ".$user['name']."<br>";
-		echo "E-mail: ".$user['email']."<hr>";
-	}
-
+	$user = $query->fetch_all(MYSQLI_BOTH);
 /*
-	fetch_array
+	fetch_all
 		MYSQLI_NUM
 		MYSQLI_ASSOC
+		MYSQLI_BOTH
 
 */
+	foreach ($user as $value) {
+		echo $value[0]." - ".$value["name"]." - ".$value["email"] ."<br>";
+	}
+	//echo "ID: ".$user[0]["name"];
 
 	//print_r($user);
 }
