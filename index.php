@@ -18,19 +18,12 @@ $sql = "SELECT * FROM USERS";
 
 if ($query = $mysqli->query($sql)) {
 
-	//Getting Data
-	while ($user = $query->fetch_array()) {
-		echo "ID: ".$user['id']."<br>";
-		echo "Name: ".$user['name']."<br>";
-		echo "E-mail: ".$user['email']."<hr>";
+	while ($user = $query->fetch_object()) {
+		echo "ID: ".$user->name."<br>";
 	}
+	// echo "Name: ".$user['name']."<br>";
+	// echo "E-mail: ".$user['email']."<hr>";
 
-/*
-	fetch_array
-		MYSQLI_NUM
-		MYSQLI_ASSOC
-
-*/
-
-	//print_r($user);
+	// echo "<hr>";
+	// print_r($user);
 }
